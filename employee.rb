@@ -11,7 +11,7 @@ class Employee
     @base_salary = base_salary
   end
 
-  def self.read_employee_data(filename)
+  def self.employee_data(filename)
     CSV.foreach(filename, headers: true) do |row|
       position = row[3]
       if position == 'owner'
@@ -55,5 +55,4 @@ class QuotaSalesPerson < Employee
   end
 end
 
-Employee.read_employee_data('employees.csv')
-binding.pry
+Employee.employee_data('employees.csv')
