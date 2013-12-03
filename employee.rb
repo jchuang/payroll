@@ -13,7 +13,16 @@ class Employee
 
   def self.read_employee_data(filename)
     CSV.foreach(filename, headers: true) do |row|
-      employee = self.new(row[0], row[1], row[2].to_i)
+      position = row[3]
+      if position == 'owner'
+        employee = Owner.new(row[0], row[1], row[2], row[4])
+      elsif position == 'commission sales'
+        employee = CommissionSalesPerson.new(row[0], row[1], row[2], row[6])
+      elsif position == 'quota sales'
+        employee = QuotaSalesPerson.new(row[0], row[1], row[2], row[4], row[5])
+      else
+        employee = self.new(row[0], row[1], row[2])
+      end
       @@employees << employee
     end
   end
@@ -23,20 +32,28 @@ class Employee
   end
 end
 
-Employee.read_employee_data('employees.csv')
-binding.pry
-
 class Owner < Employee
-
-
+  def initialize(first_name, last_name, base_salary, monthly_bonus)
+    super(first_name, last_name, base_salary)
+    @monthly_bonus = monthly_bonus
+  end
 end
 
+
 class CommissionSalesPerson < Employee
-
-
+  def initialize(first_name, last_name, base_salary, percent_commission)
+    super(first_name, last_name, base_salary)
+    @percent_commission = percent_commission
+  end
 end
 
 class QuotaSalesPerson < Employee
-
-
+  def initialize(first_name, last_name, base_salary, monthly_bonus, monthly_quota)
+    super(first_name, last_name, base_salary)
+    @monthly_bonus = monthly_bonus
+    @monthly_quota = monthly_quota
+  end
 end
+
+Employee.read_employee_data('employees.csv')
+binding.pry
