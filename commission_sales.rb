@@ -16,4 +16,15 @@ class CommissionSales < Employee
   def gross_salary
     @base_salary + commission
   end
+
+  def net_pay
+    super
+  end
+
+  def display
+    puts "Name: #{ @first_name } #{ @last_name }"
+    puts "Gross Salary: $#{ gross_salary.round(2) }"
+    puts "Commission: $#{ commission.round(2) }"
+    puts "Net Pay: $#{ net_pay.round(2) }"
+  end
 end
