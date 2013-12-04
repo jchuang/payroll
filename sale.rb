@@ -1,7 +1,3 @@
-require 'pry'
-require 'csv'
-require_relative 'employee'
-
 class Sale
   attr_reader :last_name, :sale_value
   @@sales = []
@@ -37,7 +33,3 @@ class Sale
   end
 
 end
-
-Sale.sale_data('sales.csv')
-Sale.assign_sales
-puts "Total sales = #{ Sale.total_sales }"
