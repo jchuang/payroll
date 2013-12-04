@@ -1,4 +1,6 @@
 class Employee
+  TAX_RATE = 0.3
+
   attr_reader :first_name, :last_name
   @@employees = []
 
@@ -13,10 +15,10 @@ class Employee
 
       first = row[0]
       last = row[1]
-      salary = row[2].to_i
+      salary = row[2].to_f
       position = row[3]
-      bonus = row[4].to_i
-      quota = row[5].to_i
+      bonus = row[4].to_f
+      quota = row[5].to_f
       percent = row[6].to_f
 
       if position == 'owner'
@@ -35,5 +37,19 @@ class Employee
 
   def self.employees
     @@employees
+  end
+
+  def gross_salary
+    @base_salary / 12
+  end
+
+  def net_pay
+    gross_salary * (1 - TAX_RATE)
+  end
+
+  def display
+    puts "Name: #{ @first_name } #{ @last_name }"
+    puts "Gross Salary: #{ gross_salary.round(2) }"
+    puts "Net Pay: #{ net_pay.round(2) }"
   end
 end
