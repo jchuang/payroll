@@ -21,4 +21,15 @@ class QuotaSales < Employee
   def gross_salary
     @base_salary + bonus
   end
+
+  def net_pay
+    super
+  end
+
+  def display
+    puts "Name: #{ @first_name } #{ @last_name }"
+    puts "Gross Salary: $#{ gross_salary.round(2) }"
+    puts "Bonus: $#{ bonus.round(2) }"
+    puts "Net Pay: $#{ net_pay.round(2) }"
+  end
 end
