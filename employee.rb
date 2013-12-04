@@ -39,11 +39,18 @@ class Owner < Employee
   end
 end
 
+# TODO: Consider creating a SalesPerson class to hold common instance variables
+# and methods.
 
 class CommissionSalesPerson < Employee
   def initialize(first_name, last_name, base_salary, percent_commission)
     super(first_name, last_name, base_salary)
     @percent_commission = percent_commission
+    @monthly_sales = 0
+  end
+
+  def add_sale(sale) # Takes a Sale object and credits it to this employee.
+    @monthly_sales += sale.sale_value.to_i
   end
 end
 
@@ -52,6 +59,11 @@ class QuotaSalesPerson < Employee
     super(first_name, last_name, base_salary)
     @monthly_bonus = monthly_bonus
     @monthly_quota = monthly_quota
+    @monthly_sales = 0
+  end
+
+  def add_sale(sale) # Takes a Sale object and credits it to this employee.
+    @monthly_sales += sale.sale_value.to_i
   end
 end
 
