@@ -9,4 +9,16 @@ class QuotaSales < Employee
   def add_sale(sale) # Takes a Sale object and credits it to this employee.
     @monthly_sales += sale.sale_value
   end
+
+  def bonus
+    if @monthly_sales > @monthly_quota
+      @monthly_bonus
+    else
+      0
+    end
+  end
+
+  def gross_salary
+    @base_salary + bonus
+  end
 end

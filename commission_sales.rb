@@ -8,4 +8,12 @@ class CommissionSales < Employee
   def add_sale(sale) # Takes a Sale object and credits it to this employee.
     @monthly_sales += sale.sale_value
   end
+
+  def commission
+    @base_salary * @percent_commission / 100
+  end
+
+  def gross_salary
+    @base_salary + commission
+  end
 end
