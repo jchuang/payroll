@@ -13,7 +13,7 @@ class Sale
 
   def self.sale_data(filename)
     CSV.foreach(filename, headers: true) do |row|
-      sale = self.new(row[0], row[1])
+      sale = self.new(row[0], row[1].to_i)
       @@sales << sale
     end
   end
@@ -29,8 +29,15 @@ class Sale
       salesperson.add_sale(sale)
     end
   end
+
+  def self.total_sales
+    company_sales = 0
+    @@sales.each { |sale| company_sales += sale.sale_value }
+    company_sales
+  end
+
 end
 
 Sale.sale_data('sales.csv')
 Sale.assign_sales
-binding.pry
+puts "Total sales = #{ Sale.total_sales }"

@@ -50,7 +50,7 @@ class CommissionSalesPerson < Employee
   end
 
   def add_sale(sale) # Takes a Sale object and credits it to this employee.
-    @monthly_sales += sale.sale_value.to_i
+    @monthly_sales += sale.sale_value
   end
 end
 
@@ -63,7 +63,7 @@ class QuotaSalesPerson < Employee
   end
 
   def add_sale(sale) # Takes a Sale object and credits it to this employee.
-    @monthly_sales += sale.sale_value.to_i
+    @monthly_sales += sale.sale_value
   end
 end
 
