@@ -16,7 +16,7 @@ class Owner < Employee
   end
 
   def gross_salary
-    @base_salary + bonus
+    (@base_salary / 12) + bonus
   end
 
   def net_pay

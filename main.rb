@@ -15,4 +15,8 @@ Sale.assign_sales
 sales = Sale.sales
 total_sales = Sale.total_sales
 
-binding.pry
+puts "\n=== PAYROLL REPORT ==="
+employees.each do |employee|
+  puts
+  employee.display
+end

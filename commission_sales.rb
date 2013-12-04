@@ -10,11 +10,11 @@ class CommissionSales < Employee
   end
 
   def commission
-    @base_salary * @percent_commission / 100
+    @monthly_sales * @percent_commission / 100
   end
 
   def gross_salary
-    @base_salary + commission
+    (@base_salary / 12) + commission
   end
 
   def net_pay
