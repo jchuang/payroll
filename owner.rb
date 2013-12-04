@@ -6,11 +6,27 @@ class Owner < Employee
     @monthly_bonus = monthly_bonus
   end
 
-  def gross_salary(monthly_sales)
-    if monthly_sales > COMPANY_QUOTA
-      @base_salary + @monthly_bonus
+  def bonus
+    company_sales = Sale.total_sales
+    if company_sales > COMPANY_QUOTA
+      @monthly_bonus
     else
-      @base_salary
+      0
     end
+  end
+
+  def gross_salary
+    @base_salary + bonus
+  end
+
+  def net_pay
+    super
+  end
+
+  def display
+    puts "Name: #{ @first_name } #{ @last_name }"
+    puts "Gross Salary: $#{ gross_salary.round(2) }"
+    puts "Bonus: $#{ bonus.round(2) }"
+    puts "Net Pay: $#{ net_pay.round(2) }"
   end
 end
