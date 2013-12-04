@@ -13,5 +13,6 @@ employees = Employee.employees
 Sale.sale_data('sales.csv')
 Sale.assign_sales
 sales = Sale.sales
+total_sales = Sale.total_sales
 
 binding.pry

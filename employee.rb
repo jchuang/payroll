@@ -10,16 +10,25 @@ class Employee
 
   def self.employee_data(filename)
     CSV.foreach(filename, headers: true) do |row|
+
+      first = row[0]
+      last = row[1]
+      salary = row[2].to_i
       position = row[3]
+      bonus = row[4].to_i
+      quota = row[5].to_i
+      percent = row[6].to_f
+
       if position == 'owner'
-        employee = Owner.new(row[0], row[1], row[2], row[4])
+        employee = Owner.new(first, last, salary, bonus)
       elsif position == 'commission sales'
-        employee = CommissionSales.new(row[0], row[1], row[2], row[6])
+        employee = CommissionSales.new(first, last, salary, percent)
       elsif position == 'quota sales'
-        employee = QuotaSales.new(row[0], row[1], row[2], row[4], row[5])
+        employee = QuotaSales.new(first, last, salary, bonus, quota)
       else
-        employee = self.new(row[0], row[1], row[2])
+        employee = self.new(first, last, salary)
       end
+
       @@employees << employee
     end
   end
